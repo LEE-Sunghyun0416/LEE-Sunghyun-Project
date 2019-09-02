@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int sum(int a, int b){
+	return a + b;
+}
+
+int sub(int a, int b){
+	return a - b;
+}
+
+int mul(int a, int b){
+	return a*b;
+}
+
+int div(int a, int b){
+	return a / b;
+}
+
+int main(){
+	
+	int sel, result; 
+	int (*calculate[4])(int, int) = {sum, sub, mul, div};
+	int a,b;
+	
+	printf("====================\n");
+	printf("0. 덧셈\n");
+	printf("1. 뺄셈\n");
+	printf("2. 곱셈\n");
+	printf("3. 나눗셈\n");
+	printf("4. 종료\n");
+	printf("====================\n");
+	printf("메뉴를 선택해 주세요 : \n");
+	scanf("%d", &sel);
+	printf("두개의 정수를 입력하세요 :\n");
+	scanf("%d %d", &a, &b);
+	
+	result = calculate[sel](a, b);
+	printf("연산 결과 : %d", result);
+	return 0;
+}
