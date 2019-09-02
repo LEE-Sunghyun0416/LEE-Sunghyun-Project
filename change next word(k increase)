@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+//이동한 만큼의 문자열을 출력하는 함수로 
+//배열 하나와 정수형 변수(이동시킬 횟수)) 하나를 입력 받는다. 
+void k_displacement(char arr[], int k){
+
+	int i,kIncrease = 0;
+	
+	for(i = 0; i < strlen(arr); i++){
+		
+		//kIncrease를 문자 + k로 설정읋 해준다. 
+		kIncrease = (int)arr[i] + k;
+		
+		//문자열을 입력한 배열에서 빈칸이 나오면 그대로 출력시킨다. 
+		if(arr[i] == ' '){
+			printf("%c", ' ');
+		//빈칸이 아닐 경우 원래 들어온 배열의 아스키값이 65와 90이하이고
+		//원래 들어온 값과 k를 더한 kIncrease값이 90을 넘기면
+		//kIncrease에서 91을 빼고 65를 더한 값을 넣어준다.   
+		}else{
+			if((int)arr[i]>=65 && (int)arr[i]<=90 && kIncrease > 90){
+				kIncrease = kIncrease - 91 + 65;
+				printf("%c", kIncrease);
+			//빈칸이 아닐 경우 원래 들어온 배열의 아스키값이 97과 122이하이고
+			//원래 들어온 값과 k를 더한 kIncrease값이 122를 넘기면
+			//kIncrease에서 123을 빼고 97을 더한 값을 넣어준다.   
+			}else if((int)arr[i]>=97 && (int)arr[i]<=122 && kIncrease > 122){
+				kIncrease = kIncrease - 123 + 97;
+				printf("%c", kIncrease);
+			}else{
+			//kIncrease가 값을 넘지 않으면 그대로 출력한다. 
+			printf("%c", kIncrease);
+			}
+		}
+	} 
+	
+}
+ 
+int main(){
+ 
+ 	//문자열을 입력 받고 저장하는 배열 
+	char arr[100];
+	printf("문자를 입력하세요 : ");
+	scanf(" %[^\n]s", arr);
+	
+	//이동시킬 횟수를 입력 받는 변수 k  
+	int k; 
+	printf("k의 숫자를 입력하세요(0 ~ 25) : ");
+	scanf("%d", &k);
+	
+	//변환된 값을 출력하는 함수 
+	k_displacement(arr,k);
+	
+	return 0;
+}
