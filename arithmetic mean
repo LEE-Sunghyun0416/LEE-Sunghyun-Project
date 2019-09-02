@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <math.h>
+
+double a_mean(double a, double b){
+	return (a + b) / 2;
+}
+
+double h_mean(double a, double b){
+	return (2 * a * b) / (a + b);
+}
+
+double q_mean(double a, double b){
+	return sqrt(a * b);
+}
+
+int main(){
+	double x,y;
+	int sel;
+	char *name[] = {"산술평균", "조화평균", "기하평균"};
+	int size = sizeof name / sizeof name[0];
+	int i;
+	
+	printf("평균을 구할 두 수를 입력하세요 : ");
+	scanf("%lf %lf", &x, &y);
+	
+	printf("\n어떤 평균을 구하고 싶은신가요?\n");
+	for(i = 0; i < size; i++){
+		printf("	%d.%s\n",i+1,name[i]);
+	}
+	
+	printf("번호를 입력하세요 : ");
+	scanf("%d", &sel);
+	
+	while(sel < 1 || sel > 3){
+		printf("다시 번호를 입력해주세요.");
+		scanf("%d", &sel);
+	}
+	
+	
+	double (*fp)(double,double) = NULL;
+	
+	switch(sel){
+		case 1:
+			fp = a_mean;
+			break;
+		case 2:
+			fp = h_mean;
+			break;
+		case 3:
+			fp = q_mean;
+			break;
+	} 
+	
+	printf("선택하신 %s는 %lf입니다", name[sel-1], fp(x, y));
+	
+	return 0;
+} 
